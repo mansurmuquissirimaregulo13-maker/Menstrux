@@ -1,8 +1,10 @@
 import { Settings as SettingsIcon, Bell, Shield, CreditCard, Link as LinkIcon, LogOut, ChevronRight, Edit2, Crown, Globe } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Settings() {
   const { user, logout } = useAppContext();
+  const navigate = useNavigate();
 
   const MenuItem = ({ icon: Icon, title, value, onClick, color = "var(--text-main)" }: any) => (
     <div 
@@ -35,8 +37,9 @@ export default function Settings() {
         background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-primary))',
         borderRadius: 'var(--radius-md)', padding: '20px', color: 'white',
         display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px',
-        boxShadow: 'var(--shadow-primary)'
-      }}>
+        boxShadow: 'var(--shadow-primary)',
+        cursor: 'pointer'
+      }} onClick={() => alert('Recurso Premium em breve!')}>
         <div style={{ background: 'rgba(255,255,255,0.2)', padding: '12px', borderRadius: '50%' }}>
           <Crown size={24} color="white" />
         </div>
@@ -62,7 +65,10 @@ export default function Settings() {
             <p style={{ margin: 0, fontSize: '13px', color: 'var(--text-muted)' }}>{user?.id ? `ID: ${user.id.slice(0,8)}...` : 'Anônimo'}</p>
           </div>
         </div>
-        <div style={{ background: 'var(--color-bg)', padding: '8px', borderRadius: '50%' }}>
+        <div 
+          onClick={() => navigate('/onboarding')}
+          style={{ background: 'var(--color-bg)', padding: '8px', borderRadius: '50%', cursor: 'pointer' }}
+        >
           <Edit2 size={16} color="var(--text-muted)" />
         </div>
       </div>
@@ -71,11 +77,11 @@ export default function Settings() {
       <div style={{ marginBottom: '24px' }}>
         <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>Geral</h4>
         <div className="card" style={{ padding: '0 16px' }}>
-          <MenuItem icon={Globe} title="Idioma" value="Português (Brasil)" />
-          <MenuItem icon={SettingsIcon} title="Preferências" />
-          <MenuItem icon={Bell} title="Lembretes" />
-          <MenuItem icon={Shield} title="Conta e Segurança" />
-          <MenuItem icon={CreditCard} title="Métodos de Pagamento" />
+          <MenuItem icon={Globe} title="Idioma" value="Português (Brasil)" onClick={() => alert('Mudança de idioma em breve!')} />
+          <MenuItem icon={SettingsIcon} title="Preferências" onClick={() => navigate('/onboarding')} />
+          <MenuItem icon={Bell} title="Lembretes" onClick={() => alert('Notificações ativadas!')} />
+          <MenuItem icon={Shield} title="Conta e Segurança" onClick={() => alert('Dados protegidos pela Supabase.')} />
+          <MenuItem icon={CreditCard} title="Métodos de Pagamento" onClick={() => alert('Sistema de pagamento em breve!')} />
         </div>
       </div>
 
@@ -83,7 +89,7 @@ export default function Settings() {
       <div style={{ marginBottom: '40px' }}>
         <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>Suporte</h4>
         <div className="card" style={{ padding: '0 16px' }}>
-          <MenuItem icon={LinkIcon} title="Contas Vinculadas" />
+          <MenuItem icon={LinkIcon} title="Contas Vinculadas" onClick={() => alert('Recurso em desenvolvimento.')} />
           <MenuItem icon={LogOut} title="Sair da Conta" onClick={logout} color="var(--color-primary)" />
         </div>
       </div>

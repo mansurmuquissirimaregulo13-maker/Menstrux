@@ -14,8 +14,8 @@ import Settings from './components/Settings'
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="app-container" style={{ maxWidth: '480px', margin: '0 auto', minHeight: '100vh', position: 'relative', paddingBottom: '80px' }}>
-      <header className="glass-panel" style={{ margin: 'var(--spacing-md)', padding: 'var(--spacing-sm) var(--spacing-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--radius-full)' }}>
-        <img src="/logo.png" alt="Menstrux Logo" style={{ height: '32px', objectFit: 'contain' }} />
+      <header className="glass-panel" style={{ margin: 'var(--spacing-md)', padding: 'var(--spacing-sm) var(--spacing-md)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', borderRadius: 'var(--radius-full)' }}>
+        <img src="/logo.png" alt="Menstrux Logo" style={{ height: '28px', objectFit: 'contain' }} />
       </header>
 
       {/* Main Content Area */}
