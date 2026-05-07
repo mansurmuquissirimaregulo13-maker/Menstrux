@@ -1,0 +1,151 @@
+:root {
+  /* Color Palette - PeriaTracker Light Mode */
+  --color-bg: #FCF9FA;
+  --color-surface: #FFFFFF;
+  --color-primary: #FE7DA0;
+  --color-primary-light: #FF9EBC;
+  --color-primary-pale: #FFE4EC;
+  
+  --color-secondary: #7F73E8;
+  --color-secondary-light: #A098EE;
+  
+  --color-accent-yellow: #FFC950;
+  --color-accent-green: #6DDE9E;
+  
+  /* Flow Colors */
+  --flow-light: #FFD6E3;
+  --flow-medium: #FFB3CB;
+  --flow-heavy: #FF8BA5;
+  --flow-disaster: #FE7DA0;
+  
+  /* Text */
+  --text-main: #3D3338;
+  --text-muted: #A8A0A4;
+  --text-light: #FFFFFF;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Borders & Radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(254, 125, 160, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.03);
+  --shadow-primary: 0 8px 24px rgba(254, 125, 160, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* Base App Container for Mobile View */
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  overflow-x: hidden;
+}
+
+/* Card / Surface */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+/* Primary Pill Button */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 16px 32px;
+  font-weight: 600;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-primary);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--text-muted);
+  border-radius: 50%;
+  animation: typing 1s infinite;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Utility Layouts */
+.flex-column { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; }
+.align-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
