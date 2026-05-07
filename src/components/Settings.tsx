@@ -1,10 +1,10 @@
-import { Settings as SettingsIcon, Bell, Shield, CreditCard, Link as LinkIcon, LogOut, ChevronRight, Edit2, Crown } from 'lucide-react';
+import { Settings as SettingsIcon, Bell, Shield, CreditCard, Link as LinkIcon, LogOut, ChevronRight, Edit2, Crown, Globe } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 
 export default function Settings() {
   const { user, logout } = useAppContext();
 
-  const MenuItem = ({ icon: Icon, title, onClick, color = "var(--text-main)" }: any) => (
+  const MenuItem = ({ icon: Icon, title, value, onClick, color = "var(--text-main)" }: any) => (
     <div 
       onClick={onClick}
       style={{
@@ -17,17 +17,18 @@ export default function Settings() {
         <Icon size={20} color="var(--text-muted)" />
         <span style={{ fontSize: '15px', fontWeight: 500, color }}>{title}</span>
       </div>
-      <ChevronRight size={18} color="var(--text-muted)" />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {value && <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{value}</span>}
+        <ChevronRight size={18} color="var(--text-muted)" />
+      </div>
     </div>
   );
 
   return (
     <div className="animate-fade-in" style={{ padding: '0 8px' }}>
       
-      {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '16px 0' }}>
-        <img src="/logo.png" alt="Menstrux Logo" style={{ height: '24px', objectFit: 'contain' }} />
-      </div>
+      {/* Spacer for top logo consistency */}
+      <div style={{ height: '24px' }} />
 
       {/* Upgrade Banner */}
       <div style={{
@@ -70,6 +71,7 @@ export default function Settings() {
       <div style={{ marginBottom: '24px' }}>
         <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>Geral</h4>
         <div className="card" style={{ padding: '0 16px' }}>
+          <MenuItem icon={Globe} title="Idioma" value="Português (Brasil)" />
           <MenuItem icon={SettingsIcon} title="Preferências" />
           <MenuItem icon={Bell} title="Lembretes" />
           <MenuItem icon={Shield} title="Conta e Segurança" />
