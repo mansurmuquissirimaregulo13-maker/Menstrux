@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, NavLink, Link, Navigate, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, NavLink, Link, Navigate } from 'react-router-dom'
 import { Calendar as CalendarIcon, LayoutDashboard, Sparkles, Plus, Bot, User } from 'lucide-react'
 import { AppProvider, useAppContext } from './context/AppContext'
 import Auth from './components/Auth'
@@ -99,8 +99,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 }
 
 const AppContent = () => {
-  const { isLoading, user, isOnboarded } = useAppContext();
-  const location = useLocation();
+  const { isLoading } = useAppContext();
 
   if (isLoading) {
     return (
@@ -110,9 +109,6 @@ const AppContent = () => {
       </div>
     );
   }
-
-  // Bypass Auth for immediate access if needed, or stick to strict auth
-  const effectiveUser = user || (location.pathname === '/debug-access' ? { id: 'temp-user', name: 'Menstrux Admin' } : null);
 
   return (
     <Routes>
