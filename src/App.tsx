@@ -12,14 +12,18 @@ import Settings from './components/Settings'
 
 // Layout component with bottom navigation
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
+  const isDashboard = window.location.pathname === '/';
+  
   return (
     <div className="app-container" style={{ maxWidth: '480px', margin: '0 auto', minHeight: '100vh', position: 'relative', paddingBottom: '80px', overflowX: 'hidden', overscrollBehaviorY: 'contain' }}>
-      <header style={{ margin: 'var(--spacing-md)', padding: 'var(--spacing-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img src="/logo.png" alt="Mestrux Logo" style={{ height: '60px', objectFit: 'contain' }} />
-      </header>
+      {isDashboard && (
+        <header style={{ padding: '24px var(--spacing-md) 0 var(--spacing-md)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+          <h2 style={{ margin: 0, fontSize: '22px', fontWeight: 800, color: 'var(--color-primary)', letterSpacing: '-0.5px' }}>Mestrux</h2>
+        </header>
+      )}
 
       {/* Main Content Area */}
-      <main style={{ padding: '0 var(--spacing-md)' }}>
+      <main style={{ padding: isDashboard ? '0 var(--spacing-md)' : 'var(--spacing-md) var(--spacing-md)' }}>
         {children}
       </main>
 
