@@ -1,10 +1,11 @@
 import { Menu, Droplet, Plus, ArrowRight, Edit3, Flame, Sparkles } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { differenceInDays, parseISO } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const { user } = useAppContext();
+  const navigate = useNavigate();
   const today = new Date();
   
   let cycleDay = 1;
@@ -94,7 +95,7 @@ export default function Dashboard() {
             />
           </svg>
           
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '160px' }}>
             <div style={{ color: phaseColor, marginBottom: '8px' }}>{phaseIcon}</div>
             <h1 style={{ margin: 0, fontSize: '36px', fontWeight: 800, color: 'var(--text-main)' }}>
               {cycleDay}º
@@ -102,9 +103,10 @@ export default function Dashboard() {
             <span style={{ fontSize: '14px', color: 'var(--text-main)', fontWeight: 500 }}>Dia</span>
             
             <div style={{ 
-              marginTop: '12px', padding: '4px 12px', 
+              marginTop: '12px', padding: '6px 12px', 
               border: '1px solid #EBEBEB', borderRadius: 'var(--radius-full)',
-              fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600
+              fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600,
+              width: 'max-content', whiteSpace: 'nowrap'
             }}>
               Faltam {daysLeft} dias • {phaseName}
             </div>
@@ -112,13 +114,16 @@ export default function Dashboard() {
         </div>
 
         {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
-          <button style={{
-            display: 'flex', alignItems: 'center', gap: '8px',
-            background: 'transparent', border: '1px solid #EBEBEB',
-            padding: '10px 16px', borderRadius: 'var(--radius-full)',
-            color: 'var(--text-main)', fontSize: '13px', fontWeight: 600
-          }}>
+          <button 
+            onClick={() => navigate('/onboarding')}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '8px',
+              background: 'transparent', border: '1px solid #EBEBEB',
+              padding: '10px 16px', borderRadius: 'var(--radius-full)',
+              color: 'var(--text-main)', fontSize: '13px', fontWeight: 600,
+              cursor: 'pointer'
+            }}
+          >
             <Edit3 size={14} color="var(--color-primary)" />
             Editar Ciclo
           </button>

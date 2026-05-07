@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { X, Droplet, Activity, Smile, CloudRain, ShieldAlert, Heart, Calendar, Loader2 } from 'lucide-react';
+import { X, Droplet, Activity, Smile, CloudRain, ShieldAlert, Heart, Calendar, Loader2, Zap, Brain, Coffee, Moon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../utils/supabase';
 import { useAppContext } from '../context/AppContext';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default function SymptomLogger() {
   const navigate = useNavigate();
@@ -37,36 +38,49 @@ export default function SymptomLogger() {
       if (error) throw error;
       navigate('/');
     } catch (err) {
-      alert("Error saving your log.");
+      alert("Erro ao salvar seu registro.");
       setIsSaving(false);
     }
   };
 
-  const dates = [
-    { day: 'Sun', date: 19 }, { day: 'Mon', date: 20, active: true }, 
-    { day: 'Tue', date: 21 }, { day: 'Wed', date: 22 }, 
-    { day: 'Fri', date: 23 }, { day: 'Sat', date: 24 }
-  ];
+  const today = new Date();
+  const dates = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date();
+    d.setDate(today.getDate() - 3 + i);
+    return {
+      day: format(d, 'EEE', { locale: ptBR }),
+      date: d.getDate(),
+      active: d.getDate() === today.getDate()
+    };
+  });
 
   const flows = [
-    { id: 'light', label: 'Light', color: 'var(--flow-light)', iconColor: '#FF6B93' },
-    { id: 'medium', label: 'Medium', color: 'var(--flow-medium)', iconColor: '#FFF' },
-    { id: 'heavy', label: 'Heavy', color: 'var(--flow-heavy)', iconColor: '#FFF' },
-    { id: 'disaster', label: 'Disaster', color: 'var(--flow-disaster)', iconColor: '#FFF' },
+    { id: 'light', label: 'Leve', color: 'var(--flow-light)', iconColor: '#FF6B93' },
+    { id: 'medium', label: 'Moderado', color: 'var(--flow-medium)', iconColor: '#FFF' },
+    { id: 'heavy', label: 'Intenso', color: 'var(--flow-heavy)', iconColor: '#FFF' },
+    { id: 'disaster', label: 'Crítico', color: 'var(--flow-disaster)', iconColor: '#FFF' },
   ];
 
   const symptoms = [
-    { id: 'headache', label: 'Headache', icon: <Activity size={20} />, bg: '#E6F4FF', color: '#4DA6FF' },
-    { id: 'weight', label: 'Weight Gain', icon: <Calendar size={20} />, bg: '#F6E6FF', color: '#B24DFF' },
-    { id: 'irregular', label: 'Irregular Pe...', icon: <Heart size={20} />, bg: '#FFE6E6', color: '#FF4D4D' },
-    { id: 'hot', label: 'Hot Flashes', icon: <ShieldAlert size={20} />, bg: '#FFF0E6', color: '#FF884D' },
+    { id: 'headache', label: 'Dor de Cabeça', icon: <Activity size={20} />, bg: '#E6F4FF', color: '#4DA6FF' },
+    { id: 'cramps', label: 'Cólica', icon: <Zap size={20} />, bg: '#FFE6E6', color: '#FF4D4D' },
+    { id: 'bloating', label: 'Inchaço', icon: <Droplet size={20} />, bg: '#E6F9F0', color: '#00D084' },
+    { id: 'backache', label: 'Dor Lombar', icon: <ShieldAlert size={20} />, bg: '#FFF0E6', color: '#FF884D' },
+    { id: 'acne', label: 'Acne', icon: <Smile size={20} />, bg: '#F6E6FF', color: '#B24DFF' },
+    { id: 'fatigue', label: 'Cansaço', icon: <Coffee size={20} />, bg: '#FFF9E6', color: '#FFD24D' },
+    { id: 'tender_breasts', label: 'Seios Sensíveis', icon: <Heart size={20} />, bg: '#FFE6F0', color: '#FF4D94' },
+    { id: 'insomnia', label: 'Insônia', icon: <Moon size={20} />, bg: '#E6E6FF', color: '#4D4DFF' },
   ];
 
   const moods = [
-    { id: 'normal', label: 'Normal', icon: <Smile size={20} />, bg: '#E6F9F0', color: '#4DFF9A' },
-    { id: 'angry', label: 'Angry', icon: <CloudRain size={20} />, bg: '#FFF0E6', color: '#FF884D' },
-    { id: 'happy', label: 'Happy', icon: <Smile size={20} />, bg: '#FFF9E6', color: '#FFD24D' },
-    { id: 'sad', label: 'Sad', icon: <CloudRain size={20} />, bg: '#E6F4FF', color: '#4DA6FF' },
+    { id: 'happy', label: 'Feliz', icon: <Smile size={20} />, bg: '#E6F9F0', color: '#00D084' },
+    { id: 'sad', label: 'Triste', icon: <CloudRain size={20} />, bg: '#E6F4FF', color: '#4DA6FF' },
+    { id: 'angry', label: 'Irritada', icon: <Activity size={20} />, bg: '#FFE6E6', color: '#FF4D4D' },
+    { id: 'anxious', label: 'Ansiosa', icon: <ShieldAlert size={20} />, bg: '#FFF0E6', color: '#FF884D' },
+    { id: 'calm', label: 'Calma', icon: <Smile size={20} />, bg: '#F6E6FF', color: '#B24DFF' },
+    { id: 'energetic', label: 'Energética', icon: <Zap size={20} />, bg: '#FFF9E6', color: '#FFD24D' },
+    { id: 'confused', label: 'Confusa', icon: <Brain size={20} />, bg: '#E6F0FF', color: '#4D88FF' },
+    { id: 'tired', label: 'Exausta', icon: <Moon size={20} />, bg: '#F0F0F0', color: '#666' },
   ];
 
   return (
@@ -75,7 +89,7 @@ export default function SymptomLogger() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0' }}>
         <X size={24} color="var(--text-muted)" onClick={() => navigate('/')} style={{ cursor: 'pointer' }} />
-        <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>Add Log</h2>
+        <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>Registrar Dia</h2>
         <div style={{ width: '24px' }} />
       </div>
 
@@ -83,10 +97,10 @@ export default function SymptomLogger() {
       <div style={{ display: 'flex', justifyContent: 'space-between', margin: '24px 0', borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '16px' }}>
         {dates.map((d, i) => (
           <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{d.day}</span>
+            <span style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'capitalize' }}>{d.day}</span>
             <div style={{
               width: '32px', height: '32px', borderRadius: '8px',
-              background: d.active ? 'var(--color-secondary)' : 'transparent',
+              background: d.active ? 'var(--color-primary)' : 'transparent',
               color: d.active ? 'white' : 'var(--text-main)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontWeight: 600, fontSize: '14px'
@@ -101,7 +115,7 @@ export default function SymptomLogger() {
         
         {/* Flow */}
         <div>
-          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '16px' }}>Flow</h3>
+          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '16px' }}>Fluxo Menstrual</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
             {flows.map(flow => (
               <div 
@@ -124,8 +138,8 @@ export default function SymptomLogger() {
 
         {/* Symptoms */}
         <div>
-          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '16px' }}>Symptoms</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '16px' }}>Sintomas</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px 12px' }}>
             {symptoms.map(sym => {
               const isSelected = selectedSymptoms.includes(sym.id);
               return (
@@ -150,14 +164,14 @@ export default function SymptomLogger() {
 
         {/* Moods */}
         <div>
-          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '16px' }}>Moods</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '16px' }}>Humor</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px 12px' }}>
             {moods.map(mood => {
               const isSelected = selectedMoods.includes(mood.id);
               return (
                 <div 
                   key={mood.id} onClick={() => toggleMood(mood.id)}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer', textAlign: 'center' }}
                 >
                   <div style={{
                     width: '48px', height: '48px', borderRadius: '50%',
@@ -167,7 +181,7 @@ export default function SymptomLogger() {
                   }}>
                     {mood.icon}
                   </div>
-                  <span style={{ fontSize: '12px', color: isSelected ? 'var(--text-main)' : 'var(--text-muted)', fontWeight: 500 }}>{mood.label}</span>
+                  <span style={{ fontSize: '11px', color: isSelected ? 'var(--text-main)' : 'var(--text-muted)', fontWeight: 500, lineHeight: 1.2 }}>{mood.label}</span>
                 </div>
               );
             })}
@@ -182,7 +196,7 @@ export default function SymptomLogger() {
         className="btn-primary"
         style={{ marginTop: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
       >
-        {isSaving ? <Loader2 size={20} className="spin-animation" /> : 'Save Log'}
+        {isSaving ? <Loader2 size={20} className="spin-animation" /> : 'Salvar Registro'}
       </button>
 
     </div>
