@@ -23,6 +23,7 @@ type AppContextType = {
   isLoading: boolean;
   isOnboarded: boolean;
   completeOnboarding: (data: Partial<UserProfile>) => Promise<void>;
+  updateProfileName: (name: string) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -83,6 +84,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     try {
       const profileData = {
         id: user.id,
+        name: data.name || user.name,
         weight: data.weight,
         last_period_start: data.lastPeriodStart,
         period_length: data.periodLength,
@@ -99,6 +101,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       setIsOnboarded(true);
     } catch (error) {
       console.error('Error saving onboarding data:', error);
+      throw error;
+    }
+  };
+
+  const updateProfileName = async (name: string) => {
+    if (!user?.id) return;
+    try {
+      const { error } = await supabase.from('profiles').update({ name }).eq('id', user.id);
+      if (error) throw error;
+      setUser({ ...user, name });
+    } catch (error) {
+      console.error('Error updating name:', error);
       throw error;
     }
   };
