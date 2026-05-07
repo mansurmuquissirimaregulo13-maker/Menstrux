@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, NavLink, Link, Navigate } from 'react-router-dom'
-import { Calendar as CalendarIcon, LayoutDashboard, Sparkles, Plus, Bot, User } from 'lucide-react'
+import { Calendar as CalendarIcon, LayoutDashboard, Plus, Bot, User } from 'lucide-react'
 import { AppProvider, useAppContext } from './context/AppContext'
 import Auth from './components/Auth'
 import Onboarding from './components/Onboarding'

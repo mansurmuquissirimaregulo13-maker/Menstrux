@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ArrowRight, Mail, Lock, User, Loader2 } from 'lucide-react';
+import { ArrowRight, Mail, Lock, User, Loader2 } from 'lucide-react';
 import { supabase } from '../utils/supabase';
 
 export default function Auth() {
