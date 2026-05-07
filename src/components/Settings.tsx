@@ -26,7 +26,7 @@ export default function Settings() {
       
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '16px 0' }}>
-        <h2 style={{ fontSize: '20px', fontWeight: 700, margin: 0, color: 'var(--color-primary)' }}>Menstrux</h2>
+        <img src="/logo.png" alt="Menstrux Logo" style={{ height: '24px', objectFit: 'contain' }} />
       </div>
 
       {/* Upgrade Banner */}
@@ -40,8 +40,8 @@ export default function Settings() {
           <Crown size={24} color="white" />
         </div>
         <div>
-          <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: 700 }}>Upgrade Plan Now!</h3>
-          <p style={{ margin: 0, fontSize: '12px', opacity: 0.9 }}>Get full access to all premium features.</p>
+          <h3 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: 700 }}>Assine o Plano Premium!</h3>
+          <p style={{ margin: 0, fontSize: '12px', opacity: 0.9 }}>Tenha acesso total a todas as funcionalidades.</p>
         </div>
       </div>
 
@@ -57,8 +57,8 @@ export default function Settings() {
             {user?.name?.charAt(0) || 'U'}
           </div>
           <div>
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: 600 }}>{user?.name || 'Menstrux User'}</h4>
-            <p style={{ margin: 0, fontSize: '13px', color: 'var(--text-muted)' }}>{user?.id ? `ID: ${user.id.slice(0,8)}...` : 'Anonymous'}</p>
+            <h4 style={{ margin: '0 0 4px 0', fontSize: '16px', fontWeight: 600 }}>{user?.name || 'Usuária Menstrux'}</h4>
+            <p style={{ margin: 0, fontSize: '13px', color: 'var(--text-muted)' }}>{user?.id ? `ID: ${user.id.slice(0,8)}...` : 'Anônimo'}</p>
           </div>
         </div>
         <div style={{ background: 'var(--color-bg)', padding: '8px', borderRadius: '50%' }}>
@@ -68,21 +68,21 @@ export default function Settings() {
 
       {/* General Section */}
       <div style={{ marginBottom: '24px' }}>
-        <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>General</h4>
+        <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>Geral</h4>
         <div className="card" style={{ padding: '0 16px' }}>
-          <MenuItem icon={SettingsIcon} title="Preferences" />
-          <MenuItem icon={Bell} title="Reminder" />
-          <MenuItem icon={Shield} title="Account & Security" />
-          <MenuItem icon={CreditCard} title="Payment Method" />
+          <MenuItem icon={SettingsIcon} title="Preferências" />
+          <MenuItem icon={Bell} title="Lembretes" />
+          <MenuItem icon={Shield} title="Conta e Segurança" />
+          <MenuItem icon={CreditCard} title="Métodos de Pagamento" />
         </div>
       </div>
 
       {/* Support Section */}
       <div style={{ marginBottom: '40px' }}>
-        <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>Support</h4>
+        <h4 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-main)', marginBottom: '8px' }}>Suporte</h4>
         <div className="card" style={{ padding: '0 16px' }}>
-          <MenuItem icon={LinkIcon} title="Linked Account" />
-          <MenuItem icon={LogOut} title="Log Out" onClick={logout} color="var(--color-primary)" />
+          <MenuItem icon={LinkIcon} title="Contas Vinculadas" />
+          <MenuItem icon={LogOut} title="Sair da Conta" onClick={logout} color="var(--color-primary)" />
         </div>
       </div>
 

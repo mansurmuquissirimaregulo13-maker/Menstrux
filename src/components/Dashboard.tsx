@@ -8,7 +8,7 @@ export default function Dashboard() {
   const today = new Date();
   
   let cycleDay = 1;
-  let phaseName = 'Follicular';
+  let phaseName = 'Folicular';
   let daysLeft = 24;
   let phaseColor = 'var(--color-primary)';
   let phaseIcon = <Droplet size={20} />;
@@ -30,23 +30,23 @@ export default function Dashboard() {
       phaseColor = '#FF5C8A';
       phaseIcon = <Droplet size={20} />;
     } else if (cycleDay <= cycleLen - 14 - 3) {
-      phaseName = 'Follicular';
+      phaseName = 'Folicular';
       phaseColor = '#7F73E8';
       phaseIcon = <Sparkles size={20} />;
     } else if (cycleDay <= cycleLen - 14 - 1) {
-      phaseName = 'Fertile Window';
+      phaseName = 'Janela Fértil';
       phaseColor = '#00D084';
       phaseIcon = <Flame size={20} />;
     } else if (cycleDay <= cycleLen - 14 + 1) {
-      phaseName = 'Ovulation';
+      phaseName = 'Ovulação';
       phaseColor = '#FFB900';
       phaseIcon = <Flame size={20} />;
     } else if (cycleDay <= cycleLen - 7) {
-      phaseName = 'Early Luteal';
+      phaseName = 'Lútea Inicial';
       phaseColor = '#A0254D';
       phaseIcon = <Sparkles size={20} />;
     } else {
-      phaseName = 'Late Luteal (PMS)';
+      phaseName = 'Lútea Final (TPM)';
       phaseColor = '#5046E5';
       phaseIcon = <Sparkles size={20} />;
     }
@@ -65,10 +65,10 @@ export default function Dashboard() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <p style={{ margin: 0, fontSize: '13px', color: 'var(--text-muted)' }}>Hi, Good Morning</p>
+          <p style={{ margin: 0, fontSize: '13px', color: 'var(--text-muted)' }}>Olá, Bom dia</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <h2 style={{ margin: 0, fontSize: '24px', fontWeight: 700, color: 'var(--text-main)' }}>
-              {user?.name?.split(' ')[0] || 'User'}
+              {user?.name?.split(' ')[0] || 'Usuária'}
             </h2>
             <span style={{ fontSize: '18px' }}>👋</span>
           </div>
@@ -97,16 +97,16 @@ export default function Dashboard() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div style={{ color: phaseColor, marginBottom: '8px' }}>{phaseIcon}</div>
             <h1 style={{ margin: 0, fontSize: '36px', fontWeight: 800, color: 'var(--text-main)' }}>
-              {cycleDay}<span style={{ fontSize: '18px', fontWeight: 600 }}>th</span>
+              {cycleDay}º
             </h1>
-            <span style={{ fontSize: '14px', color: 'var(--text-main)', fontWeight: 500 }}>Day</span>
+            <span style={{ fontSize: '14px', color: 'var(--text-main)', fontWeight: 500 }}>Dia</span>
             
             <div style={{ 
               marginTop: '12px', padding: '4px 12px', 
               border: '1px solid #EBEBEB', borderRadius: 'var(--radius-full)',
               fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600
             }}>
-              {daysLeft} Days left • {phaseName}
+              Faltam {daysLeft} dias • {phaseName}
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function Dashboard() {
             color: 'var(--text-main)', fontSize: '13px', fontWeight: 600
           }}>
             <Edit3 size={14} color="var(--color-primary)" />
-            Edit Cycle
+            Editar Ciclo
           </button>
           <Link to="/log" style={{ textDecoration: 'none' }}>
             <button style={{
@@ -130,7 +130,7 @@ export default function Dashboard() {
               color: 'var(--text-main)', fontSize: '13px', fontWeight: 600
             }}>
               <Plus size={14} color="var(--text-main)" />
-              Add Symptoms
+              Sintomas
             </button>
           </Link>
         </div>
@@ -140,7 +140,7 @@ export default function Dashboard() {
       <div style={{ marginTop: '32px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <h3 style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>
-            Cycle Phases Details
+            Detalhes das Fases
           </h3>
           <ArrowRight size={20} color="var(--text-muted)" />
         </div>
@@ -148,10 +148,10 @@ export default function Dashboard() {
         <div style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '16px' }} className="hide-scrollbar">
           {[
             { name: 'Menstrual', color: '#FFE1EB', text: '#A0254D', icon: <Droplet size={20} /> },
-            { name: 'Follicular', color: '#E6E4FF', text: '#4A40A0', icon: <Sparkles size={20} /> },
-            { name: 'Fertile', color: '#E6FFF5', text: '#008554', icon: <Flame size={20} /> },
-            { name: 'Ovulation', color: '#FFF9E6', text: '#856100', icon: <Flame size={20} /> },
-            { name: 'Luteal', color: '#FFE6E6', text: '#A02525', icon: <Sparkles size={20} /> },
+            { name: 'Folicular', color: '#E6E4FF', text: '#4A40A0', icon: <Sparkles size={20} /> },
+            { name: 'Fértil', color: '#E6FFF5', text: '#008554', icon: <Flame size={20} /> },
+            { name: 'Ovulação', color: '#FFF9E6', text: '#856100', icon: <Flame size={20} /> },
+            { name: 'Lútea', color: '#FFE6E6', text: '#A02525', icon: <Sparkles size={20} /> },
           ].map(p => (
             <div key={p.name} style={{ 
               minWidth: '120px', background: p.color, borderRadius: 'var(--radius-md)', padding: '16px',

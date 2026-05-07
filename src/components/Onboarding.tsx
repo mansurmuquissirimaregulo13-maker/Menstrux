@@ -31,7 +31,7 @@ export default function Onboarding() {
       });
       navigate('/');
     } catch (err) {
-      alert("Error saving your profile. Please try again.");
+      alert("Erro ao salvar seu perfil. Por favor, tente novamente.");
       setIsProcessing(false);
     }
   };
@@ -40,7 +40,7 @@ export default function Onboarding() {
     return (
       <div className="flex-column align-center justify-center animate-fade-in" style={{ minHeight: '100vh', background: 'var(--color-primary)', color: 'white' }}>
         <Loader2 size={48} className="spin-animation" style={{ animation: 'spin 1.5s linear infinite' }} />
-        <h2 style={{ marginTop: 'var(--spacing-lg)', fontWeight: 700, fontSize: '24px' }}>Saving your profile...</h2>
+        <h2 style={{ marginTop: 'var(--spacing-lg)', fontWeight: 700, fontSize: '24px' }}>Salvando seu perfil...</h2>
         <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
       </div>
     );
@@ -65,7 +65,7 @@ export default function Onboarding() {
         {step === 1 && (
           <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center', marginBottom: '48px' }}>
-              What's Your Weight?
+              Qual é o seu peso?
             </h2>
             <div style={{ position: 'relative', width: '100%', height: '120px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <div style={{ fontSize: '48px', fontWeight: 800, color: 'var(--color-primary)' }}>
@@ -83,7 +83,7 @@ export default function Onboarding() {
         {step === 2 && (
           <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center', marginBottom: '48px' }}>
-              When did your previous period begin?
+              Quando começou sua última menstruação?
             </h2>
             <input 
               type="date" value={lastPeriodStart}
@@ -96,10 +96,10 @@ export default function Onboarding() {
         {step === 3 && (
           <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center', marginBottom: '48px' }}>
-              How many days does your period last?
+              Quantos dias dura sua menstruação?
             </h2>
             <div style={{ fontSize: '48px', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '24px' }}>
-              {periodLength} <span style={{ fontSize: '20px', color: 'var(--text-muted)' }}>days</span>
+              {periodLength} <span style={{ fontSize: '20px', color: 'var(--text-muted)' }}>dias</span>
             </div>
             <input 
               type="range" min="1" max="15" value={periodLength} 
@@ -112,10 +112,10 @@ export default function Onboarding() {
         {step === 4 && (
           <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center', marginBottom: '48px' }}>
-              How long is your typical cycle?
+              Qual é a duração média do seu ciclo?
             </h2>
             <div style={{ fontSize: '48px', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '24px' }}>
-              {cycleLength} <span style={{ fontSize: '20px', color: 'var(--text-muted)' }}>days</span>
+              {cycleLength} <span style={{ fontSize: '20px', color: 'var(--text-muted)' }}>dias</span>
             </div>
             <input 
               type="range" min="20" max="45" value={cycleLength} 
@@ -128,14 +128,14 @@ export default function Onboarding() {
         {step === 5 && (
           <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center', marginBottom: '32px' }}>
-              What's your primary goal?
+              Qual é o seu objetivo principal?
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '340px' }}>
               {[
-                { id: 'track', label: 'Track Cycle', icon: <CalendarDays size={20} /> },
-                { id: 'conceive', label: 'Try to Conceive', icon: <Target size={20} /> },
-                { id: 'prevent', label: 'Avoid Pregnancy', icon: <ShieldAlert size={20} /> },
-                { id: 'health', label: 'Monitor Health', icon: <HelpCircle size={20} /> }
+                { id: 'track', label: 'Monitorar Ciclo', icon: <CalendarDays size={20} /> },
+                { id: 'conceive', label: 'Tentar Engravidar', icon: <Target size={20} /> },
+                { id: 'prevent', label: 'Evitar Gravidez', icon: <ShieldAlert size={20} /> },
+                { id: 'health', label: 'Monitorar Saúde', icon: <HelpCircle size={20} /> }
               ].map(opt => (
                 <div 
                   key={opt.id} onClick={() => setGoal(opt.id)}
@@ -157,7 +157,7 @@ export default function Onboarding() {
         {step === 6 && (
           <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2 style={{ fontSize: '24px', fontWeight: 700, color: 'var(--text-main)', textAlign: 'center', marginBottom: '48px' }}>
-              When were you born?
+              Em que ano você nasceu?
             </h2>
             <div style={{ fontSize: '48px', fontWeight: 800, color: 'var(--color-primary)', marginBottom: '24px' }}>
               {birthYear}
@@ -178,7 +178,7 @@ export default function Onboarding() {
           className="btn-primary"
           disabled={step === 2 && !lastPeriodStart}
         >
-          {step === 6 ? 'Finish' : 'Continue'}
+          {step === 6 ? 'Finalizar' : 'Continuar'}
         </button>
       </div>
     </div>
