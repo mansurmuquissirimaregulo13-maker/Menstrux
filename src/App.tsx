@@ -14,13 +14,9 @@ import Settings from './components/Settings'
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="app-container" style={{ maxWidth: '480px', margin: '0 auto', minHeight: '100vh', position: 'relative', paddingBottom: '80px' }}>
-      {/* Header */}
-      <header className="glass-panel" style={{ margin: 'var(--spacing-md)', padding: 'var(--spacing-md)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderRadius: 'var(--radius-full)' }}>
+      <header className="glass-panel" style={{ margin: 'var(--spacing-md)', padding: 'var(--spacing-sm) var(--spacing-md)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderRadius: 'var(--radius-full)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ background: 'var(--color-primary)', color: 'white', padding: '8px', borderRadius: '50%', boxShadow: 'var(--shadow-primary)' }}>
-            <Sparkles size={20} />
-          </div>
-          <h1 style={{ fontSize: '18px', fontWeight: 700, margin: 0 }}>Menstrux</h1>
+          <img src="/logo.png" alt="Menstrux Logo" style={{ height: '32px', objectFit: 'contain' }} />
         </div>
         <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light))' }} />
       </header>

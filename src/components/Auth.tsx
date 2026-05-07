@@ -73,15 +73,11 @@ export default function Auth() {
           {errorMessage}
         </div>
       )}
-      <div style={{ background: 'var(--color-primary)', color: 'white', padding: '16px', borderRadius: '50%', boxShadow: 'var(--shadow-primary)', marginBottom: 'var(--spacing-lg)' }}>
-        <Sparkles size={32} />
-      </div>
       
-      <h1 style={{ fontSize: '28px', fontWeight: 800, marginBottom: '8px', textAlign: 'center' }}>
-        {isRegister ? 'Criar sua conta' : 'Bem-vinda de volta'}
-      </h1>
-      <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--spacing-xl)', textAlign: 'center' }}>
-        Acompanhe seu ciclo e entenda seu corpo.
+      <img src="/logo.png" alt="Menstrux Logo" style={{ width: '220px', marginBottom: '32px', objectFit: 'contain' }} />
+      
+      <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--spacing-xl)', textAlign: 'center', maxWidth: '280px' }}>
+        Acompanhe seu ciclo e entenda seu corpo com inteligência.
       </p>
 
       <form onSubmit={handleSubmit} className="glass-panel" style={{ width: '100%', padding: 'var(--spacing-xl)', display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
